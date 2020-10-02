@@ -1,0 +1,47 @@
+<div class="col-xs-12">
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">Lista de Tarefas</h3>
+      </div>
+      <app-message></app-message>
+      <div class="box-body">
+          <table class="table table-bordered">
+          <tbody><tr>
+            <th>Código</th>
+            <th>Título</th>
+            <th>Data Criação</th>
+            <th>Ult. Alteração</th>
+            <th>Status</th>
+            <th style="width: 10px;"></th>
+            <th style="width: 10px;"></th>
+          </tr>
+          <tr *ngFor="let task of tasks">
+            <td>{{task.id}}</td>
+            <td>{{task.titulo}}</td>
+            <td>{{task.dtCriacao | date:'dd/MM/yyyy HH:mm'}}</td>
+            <td>{{task.dtAlteracao | date:'dd/MM/yyyy HH:mm'}}</td>
+            <td>{{task.status}}</td>
+            <td>
+              <button class="btn btn-primary" title="Editar" (click)="edit(task.id)">
+                <i class="glyphicon glyphicon-edit"> </i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-danger" title="Excluir" (click)="delete(task.id)">
+                <i class="glyphicon glyphicon-trash"> </i>
+              </button>
+            </td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="box-footer clearfix">
+        <ul class="pagination pagination-sm no-margin pull-right">
+          <li><a href="" (click)="setPreviousPage($event)">«</a></li>
+          <li *ngFor="let p of pages; let i=index">
+            <a [ngClass]="{'pagination-focus' : i == page}" href="" (click)="setPage(i, $event)">{{i+1}}</a>
+          </li>
+          <li><a href="" (click)="setNextPage($event)">»</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
